@@ -9,7 +9,7 @@ import UserContext from './utils/userContext';
 import ProtectedRoutes from './utils/ProtectedRoutes';
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState();
   console.log(loggedInUser); 
 
   return (

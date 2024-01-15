@@ -37,8 +37,7 @@ module.exports = {
         const userToken = jwt.sign({
             id: user._id
         }, process.env.SECRET_KEY);
-        res
-            .cookie("usertoken", userToken, {
+        res.cookie("usertoken", userToken, {
                 httpOnly: true,
                 maxAge: 2 * 60 * 60 * 1000
             })
@@ -54,8 +53,8 @@ module.exports = {
             .catch((err => res.json(err)));
     },
     findOne: (req, res) => {
-        User.findById(req.params._id)
-            .then(oneUser => res.json(oneUser))
+        User.findById(req.params.id)
+            .then(user => res.json(user))
             .catch(err => res.json(err));
     },
 }
