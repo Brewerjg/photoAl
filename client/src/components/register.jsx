@@ -49,23 +49,23 @@ const Register = () => {
           <div onSubmit={registerHandleSubmit} className="card-body ">
             <form action="#">
               <div className="form-group">
-                <label className='text-black' for="name">First Name:</label>
+                <label className='text-black' htmlFor="name">First Name:</label>
                 <input required="" className="form-control" onChange={changeHandler} value={user.firstName} name="firstName" id="firstName" type="text"/>
               </div>
               <div className="form-group">
-                <label className='text-black' for="name">Last Name:</label>
+                <label className='text-black' htmlFor="name">Last Name:</label>
                 <input required="" className="form-control" onChange={changeHandler} value={user.lasName} name="lastName" id="lastName" type="text"/>
               </div>
               <div className="form-group">
-                <label className='text-black' for="email">Email:</label>
+                <label className='text-black' htmlFor="email">Email:</label>
                 <input required="" className="form-control" onChange={changeHandler} value={user.email} name="email" id="email" type="email"/>
               </div>
               <div className="form-group">
-                <label className='text-black' for="password">Password:</label>
+                <label className='text-black' htmlFor="password">Password:</label>
                 <input required="" className="form-control" onChange={changeHandler} value={user.password} name="password" id="password" type="password"/>
               </div>
               <div className="form-group">
-                <label className='text-black' for="confirm-password">Confirm Password:</label>
+                <label className='text-black' htmlFor="confirm-password">Confirm Password:</label>
                 <input required="" className="form-control" onChange={changeHandler} value={user.confirmPassword} name="confirmPassword" id="confirmPassword" type="password"/>
               </div>
               <div className="form-group flex justify-center">

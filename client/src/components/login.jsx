@@ -48,11 +48,11 @@ const Login = () => {
           <div onSubmit={loginHandleSubmit} className="card-body">
             <form action="">
             <div className="form-group">
-                <label for="email">Email:</label>
+                <label htmlFor="email">Email:</label>
                 <input required="" className="form-control" onChange={onchangeHandler} value={user.email} name="email" id="email" type="email"/>
               </div>
               <div className="form-group">
-                <label for="password">Password:</label>
+                <label htmlFor="password">Password:</label>
                 <input required="" className="form-control" onChange={onchangeHandler} value={user.password} name="password" id="password" type="password"/>
               </div>
                   <input type="submit" className="btn" value="submit"/>   
