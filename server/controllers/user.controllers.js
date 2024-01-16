@@ -23,25 +23,31 @@ module.exports = {
             .catch(err => res.json(err));
         },
 
-    login: async(req, res) => {
-        const user = await User.findOne({ email: req.body.email });
-        if(user === null) {
-            // email not found in users collection
-            return res.sendStatus(400);
+    login: async (req, res) => {
+        try {
+            // 1. Find user by email
+            const user = await User.findOne({ email: req.body.email });
+    
+            // 2. Handle invalid email
+            if (!user) {
+                res.status(400).json({ msg: "Invalid email" });
+                return;
+            }
+            // 3. Compare password with stored hash
+            const correctPassword = await bcrypt.compare(req.body.password, user.password);
+            // 4. Handle incorrect password
+            if (!correctPassword) {
+                res.status(400).json({ msg: "Invalid password" });
+                return;
+            }
+            // 5. Generate JWT and set cookie
+            const userToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
+                res.cookie("usertoken", userToken, { httpOnly: true, maxAge: 2 * 60 * 60 * 1000 })
+                .json({ msg: "success!" });
+        } catch (error) {
+            console.error(error); // Log any errors for debugging
+            res.status(500).json({ msg: "Internal server error" });
         }
-        const correctPassword = await bcrypt.compare(req.body.password, user.password);
-        if(!correctPassword) {
-            // password wasn't a match!
-            return res.sendStatus(400);
-        }
-        const userToken = jwt.sign({
-            id: user._id
-        }, process.env.SECRET_KEY);
-        res.cookie("usertoken", userToken, {
-                httpOnly: true,
-                maxAge: 2 * 60 * 60 * 1000
-            })
-            .json({ msg: "success!" });
     },
     logout: (req, res) => {
         res.clearCookie('usertoken');
