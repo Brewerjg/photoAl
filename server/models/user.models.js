@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-
+const UserController = require('../controllers/user.controllers');
 
 
 const UserSchema = new mongoose.Schema({
@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
 
         {
           validator: async(req) => {
-            let foundUser = await User.findOne({email: req.body.email});
+            let foundUser = await UserController.findOne({email: req.body.email});
             return !foundUser;
           },
           message: "Email is already in use"
