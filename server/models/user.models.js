@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema({
           validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
           message: "Please enter a valid email"
         },
+        
         {
           validator: async(val) => {
             let foundUser = await mongoose.models.User.findOne({email: req.body.email});
