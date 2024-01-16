@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
         },
         {
           validator: async(val) => {
-            let foundUser = await mongoose.models.User.findOne({email: val});
+            let foundUser = await mongoose.models.User.findOne({email: req.body.email});
             return !foundUser;
           },
           message: "Email is already in use"
