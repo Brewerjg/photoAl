@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const UserController = require('../controllers/user.controllers');
+
 
 
 const UserSchema = new mongoose.Schema({
@@ -22,13 +22,13 @@ const UserSchema = new mongoose.Schema({
           message: "Please enter a valid email"
         },
 
-        {
-          validator: async(req) => {
-            let foundUser = await UserController.findOne({email: req.body.email});
-            return !foundUser;
-          },
-          message: "Email is already in use"
-        }
+        // {
+        //   validator: async(req) => {
+        //     let foundUser = await UserController.findOne({email: req.body.email});
+        //     return !foundUser;
+        //   },
+        //   message: "Email is already in use"
+        // }
       ]
     },
           
